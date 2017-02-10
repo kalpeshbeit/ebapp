@@ -1,5 +1,5 @@
 function ready() {
-    var currentPage = 0, // 当前切换页面 index
+    var currentPage = 0, // 当�?切�?�页�?� index
         bannerSwiper,
         $pages,
         menuTpl = $('#menu-template').html(),
@@ -12,7 +12,7 @@ function ready() {
         initMenus();
     }
 
-    // 获取菜单信息
+    // 获�?��?��?�信�?�
     function initMenus() {
         servers.getMenus(function (menus) {
             showMenus(menus);
@@ -23,7 +23,7 @@ function ready() {
         });
     }
 
-    // 获取用户
+    // 获�?�用户
     function initUser() {
         servers.getUser(function (user) {
             defines.user = user;
@@ -45,21 +45,21 @@ function ready() {
         });
     }
 
-    // 用户用户状态显示菜单
+    // 用户用户状�?显示�?��?�
     function showMenus(menus) {
-		//设置cart的web指向
+		//设置cart的web指�?�
 		$('#cartIcon').attr ('href','detail.html?title=My Shopping Cart&frameUrl=' + defines.baseWeb +'/checkout/cart/');
         $.each(menus, function (i, item) {
             item.url = '#c' + item.category_id;
         });
-        // 插入数据到 menus 中，从位置 1 开始
+        // �?�入数�?�到 menus 中，从�?置 1 开始
         defines.menus.splice.apply(defines.menus, [1, 0].concat(menus));
 
         $('.cbp-spmenu-list').html(Handlebars.compile(menuTpl)({
             menus: defines.menus
         }));
 
-        // 菜单项点击
+        // �?��?�项点击
         $(document).on('click', '.cbp-spmenu a', function () {
             $(this).parent().addClass('active').siblings().removeClass('active');
             // 退出
@@ -75,11 +75,12 @@ function ready() {
 
         // logout
         $(document).on('click', '.logout', function () {
+            removeStorage("user_id");
             servers.logout(initUser);
         });
     }
 
-    // 根据 page 配置构造 banner 和 切换页面
+    // 根�?� page �?置构造 banner 和 切�?�页�?�
     function showPages(res) {
         $.each(res, function (i, item) {
             defines.pages.push({
@@ -131,7 +132,7 @@ function ready() {
         });
     }
 
-    // 单个产品列表处理
+    // �?�个产�?列表处�?�
     function initItems($el, func, callback) {
         var page = defines.pages[$el.parents('.page').index()],
             $page = $('#' + page.id),
@@ -145,7 +146,7 @@ function ready() {
                 $('img.lazy').slice(page.total).lazyload({
                     container: $page.find('.scroller'),
                     placeholder: 'images/loading.gif',
-                    threshold : 200	//离像素还有200px时加载
+                    threshold : 200	//离�?素还有200px时加载
                 });
                 page.total = func === 'html' ? 0 : page.total + list.length;
             } else {
@@ -159,7 +160,7 @@ function ready() {
     }
 
     function handleItems($el, func, list) {
-        // 处理返回数据
+        // 处�?�返回数�?�
         var items = $.map(list, function (item) {
             var fromDate = new Date(moment(item.special_from_date, 'YYYY-MM-DD HH:mm:ss')),
                 toDate = new Date(moment(item.special_to_date, 'YYYY-MM-DD HH:mm:ss')),
@@ -185,8 +186,9 @@ function ready() {
         $el.append($cb);
     }
 
-    // 统一处理页面跳转相关
+    // 统一处�?�页�?�跳转相关
     Mobilebone.callback = function (pageInto) {
+       
         var $this = $(pageInto),
             $headerIndex = $('.header-index').addClass('out'),
             $frame = $('.frame').addClass('out'),
@@ -197,7 +199,7 @@ function ready() {
 
 	    // index页
         if ($this.hasClass('page-index')) {
-			initUser();	//有时在web上登录了，就要再看一下menu中菜单的变化情况，这样menu中不会突然变化
+			initUser();	//有时在web上登录了，就�?�?看一下menu中�?��?�的�?�化情况，这样menu中�?会�?然�?�化
             currentPage = $this.index();
             bannerSwiper.slideTo(currentPage);
             $headerIndex.removeClass('out');
@@ -226,8 +228,11 @@ function ready() {
 
                 servers.login(username, password, function (res) {
                     if (res) {
+                         setStorage("user_id", res.id);
+                        setStorage("user_name", res.name);
+                        setStorage("user_email", res.email);
                         history.back();
-                        //initUser(); 改在 into index里处理了
+                        //initUser(); 改在 into index里处�?�了
                     } else {
                         alert('Username or password error!');
                     }
@@ -240,7 +245,7 @@ function ready() {
         }
 		
 
-	    // detail页，product-frame页处理
+	    // detail页，product-frame页处�?�
         if ($this.hasClass('page-detail')) {
             if (query.title == 'Register') {
 				//$this.find('.detail-back').attr('href', '#');
@@ -278,7 +283,7 @@ function ready() {
                 $('img.lazy').lazyload({
                     container: $this.find('.content'),
                     placeholder: 'images/loading.gif',
-                    threshold : 200	//离像素还有200px时加载
+                    threshold : 200	//离�?素还有200px时加载
                 });
             });
         }

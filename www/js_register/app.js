@@ -2065,7 +2065,7 @@ awMobile2.app.customerAccount = Class.create({
     },
 
     register: function() {
-
+//alert(123);
         if (!this._registerFormId) {
 
             return false;
@@ -2077,7 +2077,7 @@ awMobile2.app.customerAccount = Class.create({
         var validator = new Validation(this._registerFormId);
 
         if (validator.validate()) {
-
+//alert(123);
             $(this._registerFormId).submit();
 
         }
@@ -2142,7 +2142,7 @@ awMobile2.app.customerAccount = Class.create({
 
         if ($(this._registerFormId)) {
 
-            $(this._registerFormId).observe('submit', function(event){this.restore();Event.stop(event);}.bind(this));
+            $(this._registerFormId).observe('submit', function(event){this.register();Event.stop(event);}.bind(this));
 
             this._registerFormContainer = $$('#' + this._containerElId + ' .customer-account-register').first();
 
@@ -4448,6 +4448,7 @@ awMobile2.app.AjaxUpdater = Class.create({
         var params = '';
 
         var url = this._url;
+        //alert(123);
 
         if (this._formId && $(this._formId)) {
 

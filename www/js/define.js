@@ -1,5 +1,5 @@
 /**
- * Define 类，对全局变量和常量进行定义
+ * Define 类，对全局�?��?和常�?进行定义
  * 使用例如：
  * defines.
  */
@@ -9,14 +9,14 @@
     var baseSite = 'http://pr.veba.co/~shubantech/ebranch',
 		baseLang = 'default',
 		appView = 'm',
-		//baseUrl = baseSite + '/' +baseLang,	//这个即将废除，用baseApi来
-		//baseApi = baseSite + '/' +baseLang,	//这是默认Api地址
+		//baseUrl = baseSite + '/' +baseLang,	//这个�?�将废除，用baseApi�?�
+		//baseApi = baseSite + '/' +baseLang,	//这是默认Api地�?�
 		//baseWeb = baseSite + '/' +appView,
-		baseUrl = baseSite ,	//这个即将废除，用baseApi来
-		baseApi = baseSite ,	//这是默认Api地址
+		baseUrl = baseSite ,	//这个�?�将废除，用baseApi�?�
+		baseApi = baseSite ,	//这是默认Api地�?�
 		baseWeb = baseSite + '/' +appView,
 		
-		cur_entity_id = '';	//当前查看产品id，可能没用，留着
+		cur_entity_id = '';	//当�?查看产�?id，�?�能没用，留�?�
 	
     window.defines = {
 		baseSite: baseSite,
@@ -27,36 +27,29 @@
         cur_entity_id: cur_entity_id,
         user: null,
         state: 'index',
-        productsLimit: 50, // 产品页每次请求时取的商品
+        productsLimit: 50, // 产�?页�?次请求时�?�的商�?
 		
         menus: [{
             name: 'Home',
             class_name: 'active'
         }, {
-            name: '',
-            class_name: 'table-view-divider',
+            name: 'Other Option',
+            class_name: 'login_true table-view-divider',
             url: '#'
-        }, {
-            name: 'My Order',
-            url: 'detail.html?title=My Order&frameUrl=' + baseWeb + '/sales/order/history/',
-            class_name: 'login_true'
-        }, {
-            name: 'My Shopping Cart',
-            url: 'detail.html?title=My Shopping Cart&frameUrl=' + baseWeb + '/checkout/cart/',
-            class_name: 'login_true'
-        }, {
+        },{
             name: 'My Account',
             url: 'detail.html?title=My Account&frameUrl=' + baseWeb + '/customer/account',
             class_name: 'login_true'
         }, {
+            name: 'My Wishlist',
+            url: 'detail.html?title=My Shopping Cart&frameUrl=' + baseWeb + '/checkout/cart/',
+            class_name: 'login_true'
+        },  {
             name: 'Logout',
             url: '#',
             class_name: 'login_true logout'
-        }, {
-            name: 'Exit',
-            class_name: 'exit',
-            url: '#'
-        }],
+        },
+        ],
         pages: [{
             id: 'dailySale',
             cmd: 'daily_sale',
@@ -67,12 +60,12 @@
         }, {
             id: 'bestSeller',
             cmd: 'best_seller',
-			title: 'New Arrival',	//使用新品new arrival
+			title: 'New Arrival',	//使用新�?new arrival
             pullRefresh: true,
             num: 1,
             total: 0
         }
-		/* 换成new，而coming soon 因接口问题，停用
+		/* �?��?new，而coming soon 因接�?�问题，�?�用
 			{
             id: 'bestSeller',
             cmd: 'best_seller',
@@ -91,7 +84,7 @@
         }*/
 		]
     };
-	//此次定义为动态价格实现，先不处理
+	//此次定义为动�?价格实现，先�?处�?�
 	window.opConfig = {};
 	opConfig.reloadPrice = function ()	{
 		};
