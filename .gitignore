@@ -14,3 +14,9 @@ plugins/
 .settings
 .buildpath
 .project
+
+www/css/common.css
+*.js
+www/js/index.js
+*.js
+www/searchResult.html
